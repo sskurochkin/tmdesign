@@ -1,0 +1,39 @@
+@import "src/assets/css/vars_mixins/vars_mixins";
+
+body {
+	background-color: var(--black_bg_black);
+}
+
+body.overflow {
+	overflow: hidden;
+	width: calc(100vw - var(--scrollWidth));
+
+
+}
+
+
+.header{
+	position: relative;
+	z-index: 10;
+
+	&-inner{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		font-size: 2rem;
+		font-weight: 600;
+		gap: 3.2rem;
+		height: 8rem;
+		padding: 1rem 0;
+		a{
+			color: #ffffff;
+		}
+	}
+
+	&-menu{
+
+	}
+
+
+}

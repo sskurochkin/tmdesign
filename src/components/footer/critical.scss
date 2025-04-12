@@ -1,0 +1,110 @@
+@import "src/assets/css/vars_mixins/vars_mixins";
+
+.footer {
+	margin-top: var(--section-margin);
+	background: #1a1a1a;
+	color: var(--bg-card);
+	padding: calc(var(--section-margin) / 2) 0 0;
+	a{
+		color: var(--bg-card);
+	}
+	&__title{
+		font-size: 2.2rem;
+		margin-bottom: 1.2rem;
+	}
+	&-top{
+		display: grid;
+		grid-template-columns: 1.5fr 3fr;
+		gap: 16rem;
+	}
+
+	&-mid{
+		display: grid;
+		grid-template-columns: 1.5fr 3fr;
+		gap: 16rem;
+		margin-top: 2.4rem;
+		&__info{
+			color: var(--text-color);
+		}
+	}
+}
+
+.footer-inner{
+
+	&__left{
+
+	}
+
+}
+
+.footer-bottom{
+	margin-top: 3.2rem;
+	padding-top: 1.6rem;
+	border-top: 1px solid var(--text-color);
+}
+
+.footer-payment{
+	width: 70rem;
+	margin-left: auto;
+}
+
+.footer-links{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 1.6rem;
+}
+
+.footer-link{
+
+	display: inline-flex;
+	gap: 0.6rem;
+	fill: var(--bg-card);
+	svg{
+		max-width: 2rem;
+		max-height: 2rem;
+	}
+}
+
+
+.back-to-top {
+	background-color: var(--base-color-hover);
+	position: fixed;
+	right: 4rem;
+	bottom: calc(65px + env(safe-area-inset-bottom));
+	width: 5.5rem;
+	height: 5.5rem;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 10;
+	transition: opacity 0.3s ease, background-color .3s ease;
+	opacity: 0;
+	visibility: hidden;
+	transform: rotate(-180deg);
+	fill: #fff;
+
+	svg{
+		max-width: 2rem;
+	}
+
+
+	@media (max-width: $sm - 1) {
+		width: 40px;
+		height: 40px;
+		right: 20px;
+	}
+	&.active {
+		opacity: 1;
+		visibility: visible;
+	}
+	&:hover {
+		@media (min-width: $sm) {
+			cursor: pointer;
+			background-color: var(--second-color);
+		}
+	}
+
+
+}

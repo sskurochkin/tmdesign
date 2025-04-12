@@ -1,0 +1,49 @@
+@import "src/assets/css/vars_mixins/vars_mixins";
+
+.price{
+
+	&-list{
+		margin-top: 4.8rem;
+		display: grid;
+		grid-template-columns:	1fr 1fr 1fr;
+		gap: 3.2rem;
+	}
+
+	&-card{
+		padding: 3.2rem 2.4rem;
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		box-shadow: var(--shadow-sm);
+		background-color: #fff;
+		display: flex;
+		flex-direction: column;
+		&__title{
+			margin-bottom: 2.4rem;
+		}
+		&__descr{
+			height: 6rem;
+			text-align: center;
+			color: var(--text-color);
+		}
+		&__cost{
+			text-align: center;
+			color: var(--base-color-hover);
+			margin-bottom: 2.4rem;
+		}
+		&__info{
+			text-align: center;
+			margin-bottom: 3.6rem;
+			font-weight: 500;
+			p{&:not(:last-child){
+				margin-bottom: 1.6rem;
+			}}
+		}
+
+		&__link{
+			margin-top: auto;
+			.btn{
+				width: 100%;
+			}
+		}
+	}
+}
