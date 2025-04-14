@@ -22,20 +22,21 @@ html(lang='ru-RU')
 		meta(name="robots" content="noindex, nofollow")
 		title= pageTitle
 
-		link(rel="icon" type="image/png" href="/html/favicons/favicon.ico" sizes="48x48")
-		link(rel="icon" type="image/png" href="/html/favicons/apple-touch-icon.png" sizes="57x57")
-		link(rel="icon" type="image/png" href="/html/favicons/apple-touch-icon-72x72.png" sizes="72x72")
-		link(rel="icon" type="image/png" href="/html/favicons/apple-touch-icon-114x114.png" sizes="114x114")
-		link(rel="apple-touch-icon" href="/html/favicons/apple-touch-icon-114x114.png" sizes="180x180")
+		link(rel="icon" type="image/png" href="/favicons/favicon.ico" sizes="48x48")
+		link(rel="icon" type="image/png" href="/favicons/apple-touch-icon.png" sizes="57x57")
+		link(rel="icon" type="image/png" href="/favicons/apple-touch-icon-72x72.png" sizes="72x72")
+		link(rel="icon" type="image/png" href="/favicons/apple-touch-icon-114x114.png" sizes="114x114")
+		link(rel="apple-touch-icon" href="/favicons/apple-touch-icon-114x114.png" sizes="180x180")
 
 		link(rel="preload" href="./assets/fonts/subset-Montserrat-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous")
 		link(rel="preload" href="./assets/fonts/subset-Montserrat-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous")
 		link(rel="preload" href="./assets/fonts/subset-Montserrat-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous")
 		link(rel="preload" href="./assets/fonts/subset-Montserrat-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous")
 
-		// Стили для всех страниц
+		//-Стили для всех страниц
 		link(href="./critical.css" rel="stylesheet")
-		//- Подключение критических стилей отдельных страниц
+
+
 		block componentsCriticalStyles
 
 	body.theme-default(
@@ -54,26 +55,26 @@ html(lang='ru-RU')
 
 			include ../components/footer/footer
 
-		//
-		// Виджет для перехода по всем страницам проекта
+
 		//-include ../components/pages-viget/pages-viget
 
-		// Либы, используемые на всех страницах
-		//script(src="./js/vendor/lazyload.min.js" defer)
+		//-Либы, используемые на всех страницах
+
 		script(src="./assets/js/vendor/splide.min.js" defer)
 
-		// Либы, используемые только на этой странице
+
 		block vendorScripts
 
 		block scripts
 
-		// Скрипты для всех страниц
-		//script(src="./js/app.min.js" defer)
+		//-Скрипты для всех страниц
+		//-script(src="./js/app.min.js" defer)
 
-		// Скрипты компонентов этой страницы
 		block componentsScripts
 
-		// Стили компонентов этой страницы
+
+
+		//-Стили компонентов этой страницы
 		block componentsStyles
-		//-script(src="./js/alpinejs/alpine.min.js" defer)
+		script(src="./assets/js/alpinejs/alpine.min.js" defer)
 

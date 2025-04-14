@@ -16,24 +16,8 @@
 		}
 		&__list{
 			margin-top: 3.2rem;
-			display: flex;
-			flex-direction: column;
-			align-items: flex-start;
-			gap: 1rem;
-			li{
-				position: relative;
-				padding-left: 2.4rem;
-				&:before{
-					content: '';
-					position: absolute;
-					left: 0;
-					top: .5em;
-					width: .8rem;
-					height: .8rem;
-					border-radius: 50%;
-					background-color: var(--second-color);
-				}
-			}
+
+
 		}
 	}
 

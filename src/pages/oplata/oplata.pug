@@ -1,20 +1,16 @@
 extends ../../layout/layout
 
 block vars
-	- var pageTitle = 'Главная'
+	- var pageTitle = 'Онлайн-курс Татьяны Киреевой | Оферта на оказание услуг'
 	- var pageBodyClass = ''
-	- var dir = ''
+	- var dir = '/'
 
 
 
 block main
 
-	include ../../components/hero-screen/hero
-	include ../../components/why/why
-	include ../../components/about/about
-	include ../../components/reviews/reviews
-	include ../../components/price/price
-	include ../../components/faq/faq
+	include ../../components/oplata/content
+
 
 block componentsCriticalStyles
 	+componentsCriticalStyles-includer()

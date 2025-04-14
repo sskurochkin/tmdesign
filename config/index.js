@@ -147,10 +147,10 @@ class SLAMBOX {
         const _this = this;
 
         browserSync({
-            server: "./html/",
+            server: "./",
             host: 'localhost',
             port: SLAMBOX.port,
-            startPath: "/index.html",
+            startPath: "/html/index.html",
             files: [
                 "./html/assets/components/**/style.css",
                 "./html/*.html",
