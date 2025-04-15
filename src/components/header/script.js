@@ -33,6 +33,12 @@ window.addEventListener('load', function () {
 					pagination: true,
 					arrows: true,
 					lazyLoad: 'sequential',
+					breakpoints:{
+						575:{
+							perPage: 1,
+							arrows: false
+						}
+					}
 
 				}).mount();
 

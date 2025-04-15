@@ -15,13 +15,21 @@ html {
 	@media (max-width: $lg - 1) {
 		font-size: .73vw;
 	}
+	@media (max-width: $md - 1) {
+		font-size: 7px;
+	}
+	@media (max-width: $xs - 1) {
+		font-size: 6.5px;
+	}
 }
 
 body {
 	font-size: 1.8rem;
 	fill: transparent;
 	color: var(--text-color-black);
-
+	@media (max-width: $xs - 1) {
+		font-size: 14px;
+	}
 
 	a {
 		transition: all ease .3s;
@@ -147,10 +155,16 @@ input {
 
 .h1{
 	font-size: 5.2rem;
+	@media (max-width: $xs - 1) {
+		font-size: 4.6rem;
+	}
 }
 
 .h2{
 	font-size: 4.4rem;
+	@media (max-width: $xs - 1) {
+		font-size: 3.2rem;
+	}
 }
 .t3{
 	font-size: 3.2rem;
@@ -163,6 +177,9 @@ input {
 }
 .t6{
 	font-size: 1.4rem;
+	@media (max-width: $xs - 1) {
+		font-size: 12px;
+	}
 }
 .fb{
 	font-weight: 700;
@@ -248,12 +265,17 @@ input {
 		text-decoration: underline;
 	}
 
-
+	.table-wrap{
+		overflow-x: auto;
+	}
 	.table{
 		border: 1px solid #eee;
-		table-layout: fixed;
+		//table-layout: fixed;
 		width: 100%;
 		margin-bottom: 20px;
+		@media (max-width: $xs - 1) {
+			font-size: 11px;
+		}
 	}
 	.table th {
 		font-weight: bold;
