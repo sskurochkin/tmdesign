@@ -70,7 +70,37 @@ window.addEventListener('load', function () {
 		})
 	})
 
+	function openPopup(target_url, win_name, width, height) {
+		let socWinOpen = window.open(target_url, win_name, 'scrollbars=yes,statusbar=no,toolbar=no,location=no,directories=no,resizable=no,menubar=no,width='+width+',height='+height+',screenX='+((screen.width-width) / 2)+",screenY="+((screen.height-height) / 2)+",top="+((screen.height-height) / 2)+",left="+((screen.width-width) / 2));
+		socWinOpen.focus();
+	}
 
+	const buyBtns = document.querySelectorAll('.js-btn-buy')
+	if (buyBtns.length){
+		buyBtns.forEach(btn=>{
+			btn.addEventListener('click', async ()=>{
+				const price = btn.dataset.price
+
+
+				try {
+					const response = await fetch(`https://tmdesign.by/payment.php?amount=${price}`, {
+
+					})
+					const {formUrl, ...rest} = await response.json()
+
+					if(formUrl){
+						openPopup(formUrl, 'Оплата' ,460, 700)
+					}
+
+					console.log(rest)
+				} catch (e) {
+					console.log(e)
+				}
+
+
+			})
+		})
+	}
 
 
 
