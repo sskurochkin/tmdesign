@@ -1,5 +1,5 @@
 /node_modules/
-/html/
-!/html/payment.php
+html/*
+!html/payment.php
 /.idea/
 /.vscode/
