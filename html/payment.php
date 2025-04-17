@@ -10,8 +10,8 @@ $postData = [
     'currency' => 933,
     'userName' => 'tmdesign.by_TW6LUTCUXSOFFSAGSNTK-api',
     'password' => ')XW7n6oq',
-    'returnUrl' => 'https://mybestmerchantreturnurl.com',
-    'description' => 'my_first_order',
+    'returnUrl' => 'https://t.me/',
+//    'description' => 'my_first_order',
     'language' => 'ru',
     'orderNumber' => $transactionID
 ];
