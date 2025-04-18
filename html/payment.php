@@ -1,5 +1,17 @@
 <?php
 $url = 'https://abby.rbsuat.com/payment/rest/register.do';
+$BOT_TOKEN = '7659117318:AAEK07veMrkuY4o7ne920gWbQavb3K0DmWE';
+$CHAT_ID = '529572469';
+
+
+//tg
+//$text = "Новая заявка:\nИмя: $name\nEmail: $email";
+$text = "проверка";
+$urlTg = "https://api.telegram.org/bot$BOT_TOKEN/sendMessage?chat_id=$CHAT_ID&text=" . urlencode($text);
+
+file_get_contents($urlTg); // Отправка запроса
+
+
 
 
 $amount     = empty($_GET['amount']) ? 1 : max(1,(int)$_GET['amount']);
