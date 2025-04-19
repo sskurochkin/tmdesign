@@ -1,4 +1,4 @@
-section.section.section--bg.price#price
+section.section.section--bg.price#price(x-data="price")
 	.container
 
 		.h2.fsb.section-title.text--center Инвестируйте в свое дизайнерское будущее!
@@ -12,8 +12,8 @@ section.section.section--bg.price#price
 				.price-card__info
 					p 10 видео-уроков в записи для самостоятельного изучения
 					p Подробные конспекты к каждому уроку
-				.price-card__link
-					.js-btn-buy.btn.btn--primary(data-price="100") Купить
+				.price-card__link(@click="openPopup(1)")
+					.js-btn-buy.btn.btn--primary Купить
 
 			.price-card
 				.price-card__title.text--center.t3.fsb Продвинутый курс
@@ -38,3 +38,80 @@ section.section.section--bg.price#price
 				.price-card__link
 					.js-btn-buy.btn.btn--primary(data-price="300") Купить
 
+
+
+	.modal(:class="modal && 'open'")
+		.modal__bg(@click="closePopup")
+
+		.modal__inner
+			.modal__close
+				+icon('i-close')(style="width: 2rem; height:2rem;")
+			.modal-form
+				.modal-form__header.t3.fsb Заполните форму
+				.modal-form__subtitle Укажите свои данные для верного оформления заказа
+				form.form-validate(x-ref="form")
+					input(type="hidden" x-model="amount" name="amount")
+
+					+input({
+						label: 'Ваше имя',
+						fg_mod: 'form-group--margin',
+						type: 'text',
+						id: 'name',
+						name: false,
+						small: false,
+						placeholder: 'Ваше имя',
+						required: true,
+						validation: {
+							message: 'Заполните поле',
+							regexp: 'Неверный формат',
+							emailaddress: ' ',
+							identical: false
+						}
+					})
+
+					+input({
+						label: 'Телефон',
+						fg_mod: 'form-group--margin',
+						type: 'tel',
+						id: 'phone',
+						name: false,
+						small: false,
+						placeholder: '+375 (__) ___-__-__',
+						required: true,
+						pattern: 'phone',
+						validation: {
+							message: 'Заполните поле',
+							regexp: 'Неверный формат',
+							emailaddress: ' ',
+							identical: false
+						}
+					})(data-mask="+375 (__) ___-__-__")
+
+					+input({
+						label: 'E-mail',
+						fg_mod: 'form-group--margin',
+						id: 'email',
+						type: 'email',
+						name: false,
+						small: false,
+						placeholder: 'example@example.com',
+						required: true,
+						pattern: '[A-Za-zА-Яа-я0-9\_\-]{1,}@[A-Za-zА-Яа-я0-9\_\-]{1,}\.[A-Za-zА-Яа-я0-9]{2,}',
+						validation: {
+							message: 'Заполните поле',
+							regexp: 'Неверный формат',
+							emailaddress: ' ',
+							identical: false
+						}
+					})
+
+
+					<div class="form-group form-group--margin">
+					<div class="checkbox">
+					<input class="form-control" x-model="policy" type="checkbox" id="policy" name="policy">
+					<label for="policy"><span class="checkbox__descr">Я согласен на  <a href="/policy" target="_blank"> <span> обработку   персональных данных </span></a></span>
+					</label>
+					</div>
+					</div>
+					button(type="submit" :disabled="!policy").btn.btn--primary.btn--fw
+						span Отправить

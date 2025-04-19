@@ -17,23 +17,22 @@
 	  }
   }
 
+	&--margin{
+		margin-bottom: 2.4rem;
+	}
+
 
 
 }
 
 .form-control-label {
   color: #000;
-  font-size: 13px;
+  font-size: 1.4rem;
   font-style: normal;
-  font-weight: 300;
-  line-height: 23px;
   display: inline-block;
-  &--small {
-    font-size: 0.875rem;
-    line-height: calc(1em + 7px);
-  }
+
   .label-required {
-    // color: #f25353;
+    color: #f25353;
     // margin-left: 0;
     // margin-left: 2px;
   }
@@ -41,12 +40,13 @@
 .form-control {
   color: var(--input_color);
   box-shadow: none;
-  border: none;
+  border: 1px solid var(--border);
   height: 50px;
   padding: 13px 15px;
   background-color: #f8f8f8;
   font-size: 16px;
   line-height: calc(1em + 4px);
+	border-radius: var(--radius);
   // border-radius: 8px;
   position: relative;
   width: 100%;
@@ -73,6 +73,11 @@ textarea.form-control {
   display: flex;
   align-items: center;
 
+	a{
+		color: var(--base-color-hover);
+
+	}
+
   input {
     position: absolute;
     top: 0;
@@ -81,7 +86,7 @@ textarea.form-control {
     opacity: 0;
   }
   label {
-    font-size: 0.875rem;
+	  font-size: 1.4rem;
     padding: 0 0 0 35px;
     position: relative;
     z-index: 1;
@@ -89,7 +94,6 @@ textarea.form-control {
     outline: 0;
     display: block;
     color: #444444;
-    font-size: 15px;
     font-style: normal;
     font-weight: 300;
     line-height: 23px;

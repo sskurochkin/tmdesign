@@ -29,4 +29,9 @@
 		font-size: 1.4rem;
 
 	}
+	&[disabled]{
+		pointer-events: none;
+		background-color: var(--border);
+		color: var(--text-color);
+	}
 }

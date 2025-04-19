@@ -11,6 +11,11 @@ body.overflow {
 
 }
 
+body.overflow .header {
+	padding-right: var(--scrollWidth);
+}
+
+
 
 .header{
 	position: relative;
