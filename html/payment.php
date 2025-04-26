@@ -8,7 +8,8 @@
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $url = 'https://abby.rbsuat.com/payment/rest/register.do';
     $BOT_TOKEN = '7659117318:AAEK07veMrkuY4o7ne920gWbQavb3K0DmWE';
-    $CHAT_ID = '529572469';
+    $CHAT_ID = '623958700';
+//    $CHAT_ID = '529572469';
 
     $transactionID   = (int) str_replace('.', '',number_format(microtime(true), 4, '.', ''));
 
@@ -17,7 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = isset($_POST['email']) ? $_POST['email'] : '';
     $amount = isset($_POST['amount']) ? $_POST['amount'] : '';
     $phone = isset($_POST['phone']) ? $_POST['phone'] : '';
-    $text = "Новая заявка:\nИмя: $name\nEmail: $email";
+    $sum = $amount/100;
+    $text = "Новая заявка:\nИмя: $name\nТелефон: $phone\nEmail: $email\nСумма: $sum BYN\nЗаказ: $transactionID";
 
     $postData = [
         'amount' => $amount,

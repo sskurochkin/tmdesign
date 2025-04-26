@@ -3,6 +3,27 @@
 // MAIN
 .form-group {
   position: relative;
+	&.has-error {
+		.form-control {
+			border-color: #ff5252;
+
+			&:focus {
+				border-color:  #ff5252;
+			}
+		}
+
+		.help-block {
+			position: absolute;
+			top: calc(100% + 2px);
+			left: 0;
+			color:  #ff5252;
+			font-size: 12px;
+
+			@media (max-width: $sm - 1) {
+				font-size: 12px;
+			}
+		}
+	}
   &__description {
     font-size: 0.8125rem;
     line-height: calc(1em + 7px);

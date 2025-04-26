@@ -12,7 +12,7 @@ section.section.section--bg.price#price(x-data="price")
 				.price-card__info
 					p 10 видео-уроков в записи для самостоятельного изучения
 					p Подробные конспекты к каждому уроку
-				.price-card__link(@click="openPopup(1)")
+				.price-card__link(@click="openPopup(620)")
 					.js-btn-buy.btn.btn--primary Купить
 
 			.price-card
@@ -25,7 +25,7 @@ section.section.section--bg.price#price(x-data="price")
 					p + 2 индивидуальные консультации Татьяны (онлайн или офлайн на выбор)
 
 				.price-card__link
-					.js-btn-buy.btn.btn--primary(data-price="200") Купить
+					.js-btn-buy.btn.btn--primary(@click="openPopup(1550)") Купить
 
 			.price-card
 				.price-card__title.text--center.t3.fsb VIP-Тариф
@@ -36,7 +36,7 @@ section.section.section--bg.price#price(x-data="price")
 					p Подробные конспекты у каждому уроку
 					p Индивидуальное сопровождение Татьяной (онлайн или офлайн на выбор)
 				.price-card__link
-					.js-btn-buy.btn.btn--primary(data-price="300") Купить
+					.js-btn-buy.btn.btn--primary(@click="openPopup(4650)") Купить
 
 
 
@@ -44,9 +44,9 @@ section.section.section--bg.price#price(x-data="price")
 		.modal__bg(@click="closePopup")
 
 		.modal__inner
-			.modal__close
+			.modal__close(@click="closePopup")
 				+icon('i-close')(style="width: 2rem; height:2rem;")
-			.modal-form
+			.modal-form(x-show="!errorMessage && !success" x-cloak)
 				.modal-form__header.t3.fsb Заполните форму
 				.modal-form__subtitle Укажите свои данные для верного оформления заказа
 				form.form-validate(x-ref="form")
@@ -115,3 +115,19 @@ section.section.section--bg.price#price(x-data="price")
 					</div>
 					button(type="submit" :disabled="!policy").btn.btn--primary.btn--fw
 						span Отправить
+			.modal-form(x-show="errorMessage" x-cloak)
+				.modal-form__header.t3.fsb Произошла ошибка
+				.modal-form__subtitle
+					h5 Код ошибки <span x-text="errorCode"></span>
+					h5(x-text="errorMessage")
+					br
+					p Свяжитесь с нами по телефону <a href="tel:+375291784569">+375 29 178-45-69</a>  и собщите код ошибки
+					br
+					.t3.fsb Спасибо
+			.modal-form(x-show="success" x-cloak)
+				.modal-form__header.t3.fsb Спасибо
+				.modal-form__subtitle
+					.success
+						h5 Заказ оформлен.<br>Пожалуйста подождите, идет переход к оплате
+						br
+						.loader

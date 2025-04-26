@@ -824,13 +824,18 @@ window.addEventListener('alpine:init', function () {
 		policy: false,
 		amount: null,
 		form : null,
+		success: false ,
+		errorMessage: '',
+		errorCode: '',
 
 
 		init() {
 			this.form = this.$refs.form
+			this.success = false
 			this.form.addEventListener('success.validator', async()=>{
 				await this.sendRequest()
 			})
+
 		},
 
 		async sendRequest(){
@@ -846,13 +851,25 @@ window.addEventListener('alpine:init', function () {
 				const {formUrl, ...rest} = await response.json()
 
 				if(formUrl){
-					this.paymentWindow(formUrl, 'Оплата' ,460, 700)
+					this.success = true
+
+					setTimeout(()=>{
+						this.closePopup()
+						this.$nextTick(()=>{
+							window.location.href = formUrl
+						})
+
+					}, 1500)
+
+					// this.paymentWindow(formUrl, 'Оплата' ,460, 700)
 
 				}
 
 				if(rest.errorMessage){
-					console.log(rest)
+					this.errorMessage = rest.errorMessage
+					this.errorCode = rest.errorCode
 				}
+
 
 
 			} catch(e){
@@ -877,14 +894,21 @@ window.addEventListener('alpine:init', function () {
 
 		openPopup(id){
 			this.modal = true
-			this.amount = +id*1000
+			this.amount = +id*100
 			document.querySelector('body').classList.add('overflow')
 		},
 
 		closePopup(){
 			this.modal = false
 			this.amount = false
+
 			document.querySelector('body').classList.remove('overflow')
+			setTimeout(()=>{
+				this.errorMessage = ''
+				this.errorCode = ''
+				this.success = false
+				this.form.reset()
+			}, 600)
 		},
 
 
