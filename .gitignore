@@ -1,5 +1,7 @@
 /node_modules/
 html/*
 !html/payment.php
+!html/send.php
+!html/phpmailer
 /.idea/
 /.vscode/
