@@ -2,6 +2,7 @@
 html/*
 !html/payment.php
 !html/send.php
+!html/*.php
 !html/phpmailer
 /.idea/
 /.vscode/
