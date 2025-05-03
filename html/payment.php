@@ -1,10 +1,6 @@
 <?php
 
 
-//tg
-//$text = "Новая заявка:\nИмя: $name\nEmail: $email";
-//file_get_contents($urlTg); // Отправка запроса
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $url = 'https://abby.rbsuat.com/payment/rest/register.do';
     $BOT_TOKEN = '7659117318:AAEK07veMrkuY4o7ne920gWbQavb3K0DmWE';
@@ -26,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'currency' => 933,
         'userName' => 'tmdesign.by_TW6LUTCUXSOFFSAGSNTK-api',
         'password' => ')XW7n6oq',
-        'returnUrl' => 'https://tmdesign.by/',
+        'returnUrl' => 'https://tmdesign.by/send.php?userMail='. $email,
 //    'description' => 'my_first_order',
         'language' => 'ru',
         'orderNumber' => $transactionID
