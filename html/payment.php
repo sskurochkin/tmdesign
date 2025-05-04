@@ -17,12 +17,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sum = $amount/100;
     $text = "Новая заявка:\nИмя: $name\nТелефон: $phone\nEmail: $email\nСумма: $sum BYN\nЗаказ: $transactionID";
 
+    $section = 1;
+    if($amount == '155000'){
+        $section = 2;
+    }
+    if($amount == '465000'){
+        $section = 3;
+    }
+
     $postData = [
         'amount' => $amount,
         'currency' => 933,
         'userName' => 'tmdesign.by_TW6LUTCUXSOFFSAGSNTK-api',
         'password' => ')XW7n6oq',
-        'returnUrl' => 'https://tmdesign.by/send.php?userMail='. $email,
+        'returnUrl' => 'https://tmdesign.by/send.php?userMail='. $email . '&stage=' . $section . '&orderNumber=' . $transactionID,
 //    'description' => 'my_first_order',
         'language' => 'ru',
         'orderNumber' => $transactionID
