@@ -67,12 +67,10 @@ window.addEventListener('load', function () {
 		}, config)
 	})
 
-
 	reviews.forEach(el=>{
 
 		sliderObserver.observe(el)
 	})
-
 
 	document.addEventListener('scroll', () => {
 		if (window.pageYOffset > window.innerHeight) {
@@ -812,6 +810,290 @@ window.addEventListener('load', function () {
 	document.querySelectorAll('form.form-validate').forEach((x) => {
 		new Mask(x)
 	})
+
+	const vocabulary = {
+
+
+				text: 'Для работы сайта используются технические, аналитические и функциональные cookie-файлы. Нажимая кнопку "Принять все", вы даете согласие на обработку всех cookie-файлов. <a href="https://tmdesign.by/cookie">Подробнее об обработке</a>',
+				name: 'Установка счетчиков',
+				items: [
+					{
+						code: "TECH",
+						checked: true,
+						disable: true,
+						name: 'Технические (обязательные) cookie',
+						text: 'Вы можете настроить использование каждой категории cookie-файлов, за исключением категории "Технические (обязательные) cookie-файлы", поскольку они необходимы для надлежащего функционирования сайта и не требуют согласия.'
+					},
+					{
+						code: "FUNCTIONAL",
+						checked: false,
+						name: 'Функциональные cookie',
+						text: 'Являются критически важными для работы отдельных страниц сайта и обеспечивают работу полезных функций.'
+					},
+					{
+						code: "ANALYTICS",
+						checked: false,
+						name: 'Аналитические cookie',
+						text: 'Сбор аналитической информации с помощью Google Analytics и Яндекс.Метрика позволит проанализировать ваше взаимодействие с нашим сайтом и сервисом в целях оценки и улучшения работы нашего сайта.<br>Отключение аналитических cookie-файлов не позволит определить ваши предпочтения, сделать сайт удобнее.'
+					},
+				],
+				notification: {
+					btn_accept: 'Принять все',
+					btn_cancel: 'Отклонить',
+					btn_tune: 'Настроить',
+					btn_save: 'Сохранить',
+					text: 'Для реализации основных функций сайта, а также для сбора данных о том, как посетители взаимодействуют с сайтом, мы используем cookies-файлы.<br>Изменить выбор настроек обработки cookie-файлов или отозвать согласие можно в интерфейсе сайта (кнопка "Настроить обработку cookie-файлов"). Для получения подробной информации об обработке cookie-файлов на нашем сайте и механизме реализации прав смотрите по ссылке <a href="https://tmdesign.by/cookie" target="_blank">"Обработка cookie-файлов"</a>.'
+				},
+				set_btn: 'Настроить обработку cookie-файлов'
+
+
+
+	}
+
+
+	const cookieApp = {
+		init() {
+			this.currentCookie = JSON.parse(this.getCookie("cookie_agree") || null);
+
+			if(this.currentCookie){
+				Object.keys(this.currentCookie).forEach(x=>{
+
+					if(x){
+						vocabulary.items.forEach(item=>{
+							if(x===item.code){
+								item.checked = this.currentCookie[x]
+							}
+						})
+					}
+				})
+			}
+
+
+			this.render();
+
+			this.setListeners();
+
+			if (!this.currentCookie) this.showPopup();
+
+
+		},
+
+		cookieObj:{
+		},
+
+		settings:{
+			expires: 31104000,
+		},
+
+		response:{ ...vocabulary, block: true, base_color: '#f09a9a' },
+
+		render() {
+			try {
+
+				const {text, name, items, notification, block, show_icon} =
+					this.response;
+				this.html = document.createElement("div");
+				this.container = document.createElement("div");
+				this.container.classList.add("cookie-notification-wrapper");
+				if (block) {
+					this.container.classList.add("blocked");
+				}
+
+				if (this.response.base_color) {
+					this.container.style.setProperty(
+						"--base-color",
+						this.response.base_color
+					);
+				}
+
+				this.container.innerHTML = `
+					 <div class="cookie-notification">
+							<div class="cookie-notification-wrap">
+								 <div class="cookie-notification__inner">
+									  <div class="cookie-notification__header">${text}</div>
+									  <form class="cookie-notification__body">
+											<div class="cookie-notification__title fz_heading_3 fw-600">${name}</div>
+											<div class="cookie-notification__flex">
+												${items
+					.map(
+						({
+							 code,
+							 name,
+							checked,
+							 disable,
+							 text,
+						 }) => `
+													<div class="cookie-notification__form-control">
+													<div class="cookie-notification__checkbox">
+														 <input class="form-control" type="checkbox" ${checked ? 'checked' : ''} id="${code}" name="${code}"  ${
+							disable
+								? 'checked disabled="disabled"'
+								: ''
+						}">
+														 <label for="${code}" class="cookie-notification__checkbox-label fw-600">${name}</label>
+													</div>
+													<div >${text || ''}</div>
+													</div>
+												`
+					)
+					.join('')}
+												 <div class="cookie-notification__mini fz_mini">${notification.text}</div>
+											</div>
+									  </form>
+									  <div class="cookie-notification__footer">
+									  		<div class="cookie-notification__control cookie-notification__control--approve base">${notification.btn_accept}</div>
+											<div class="cookie-notification__control cookie-notification__control--approve set">${notification.btn_save}</div>
+
+									  		<div class="cookie-notification__control cookie-notification__control--cancel">${notification.btn_cancel}</div>
+											
+											<div class="cookie-notification__settings cookie-notification__control--settings">
+												<div class="cookie-notification__control">${notification.btn_tune}</div>
+											</div
+										</div>
+								 </div>
+							</div>
+					 </div>
+				 `
+				document.querySelector("body").append(this.html);
+				this.html.appendChild(this.container);
+				this.renderSettingsButton();
+			} catch (error) {
+			}
+		},
+
+		setListeners() {
+			const apptoveBtn = this.container.querySelectorAll(
+				'.cookie-notification__control--approve'
+			)
+			const cancelBtn = this.container.querySelector(
+				'.cookie-notification__control--cancel'
+			)
+			const settingsBtn = this.container.querySelector(
+				'.cookie-notification__control--settings'
+			)
+			apptoveBtn.forEach(x=>x.addEventListener('click', () => this.accept()))
+			cancelBtn.addEventListener('click', () => this.decline())
+			settingsBtn.addEventListener('click', () => this.showSettings())
+			this.container.querySelectorAll("input:not([disabled])").forEach((x) => {
+				x.addEventListener("change", () => {
+					const id = x.getAttribute("id");
+					const checked = x.checked;
+					this.onInputHandler(id, checked);
+				});
+			});
+		},
+
+		accept(force) {
+			if (force) {
+				this.response.items.forEach(({code}) => {
+					this.cookieObj[code] = true;
+				});
+			}
+			this.writeAgreeCookies({...this.currentCookie, ...this.cookieObj });
+			this.closePopup();
+			if (this.isDirty || this.currentCookie) {
+				return window.location.reload();
+			} else {
+				// this.loadAssets();
+				this.isDirty = true;
+			}
+		},
+		decline() {
+			this.response.items
+				.filter((x) => !x.disable)
+				.forEach(({code}) => {
+					this.cookieObj[code] = false;
+				});
+			this.writeAgreeCookies(this.cookieObj);
+			this.closePopup();
+			if (this.isDirty || this.currentCookie) {
+				window.location.reload();
+			} else {
+				this.isDirty = true;
+			}
+		},
+
+		writeAgreeCookies(obj) {
+			const {expires} = this.settings;
+			this.setCookie("cookie_agree", JSON.stringify(obj), {
+				expires,
+				domain: window.location.hostname,
+				path: "/",
+			});
+		},
+
+		getCookie(name) {
+			const matches = document.cookie.match(
+				new RegExp(
+					"(?:^|; )" +
+					name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
+					"=([^;]*)"
+				)
+			);
+			return matches ? decodeURIComponent(matches[1]) : undefined;
+		},
+
+		setCookie(name, value, options) {
+			options = options || {};
+			var expires = options.expires;
+			if (typeof expires == "number" && expires) {
+				var d = new Date();
+				d.setTime(d.getTime() + expires * 1000);
+				expires = options.expires = d;
+			}
+			if (expires && expires.toUTCString) {
+				options.expires = expires.toUTCString();
+			}
+			value = encodeURIComponent(value);
+			var updatedCookie = name + "=" + value;
+			for (var propName in options) {
+				updatedCookie += "; " + propName;
+				var propValue = options[propName];
+				if (propValue !== true) {
+					updatedCookie += "=" + propValue;
+				}
+			}
+			document.cookie = updatedCookie;
+		},
+
+		onInputHandler(id, checked) {
+			this.cookieObj[id] = checked;
+
+		},
+
+
+		showPopup() {
+			this.container.classList.add("visible");
+		},
+		closePopup() {
+			this.container.classList.remove("visible");
+		},
+		showSettings() {
+			this.showPopup()
+			this.container
+				.querySelector('.cookie-notification__body')
+				.classList.add('visible')
+			this.container.classList.add('setting')
+			this.container
+				.querySelector('.cookie-notification__header')
+				.classList.add('hidden')
+			this.container
+				.querySelector('.cookie-notification__settings')
+				.classList.add('hidden')
+		},
+		renderSettingsButton(mob=false) {
+			this.settingsButton = document.querySelector(".cookie-setting");
+
+			this.settingsButton?.addEventListener("click", () => this.showSettings());
+
+
+		},
+
+
+	};
+
+	window.cookieApp = cookieApp;
+	window.cookieApp.init();
 
 
 })
