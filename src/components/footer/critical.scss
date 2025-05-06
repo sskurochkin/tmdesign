@@ -122,10 +122,19 @@
 
 .cookie-setting{
 	margin-top: 2rem;
-	text-decoration: underline dashed 1px;
+	text-decoration: underline;
+	text-decoration-style: dashed;
 	text-underline-offset: .3rem;
 	font-size: 1.2rem;
 	color: var(--text-color);
+	transition: all ease .3s;
+	&:hover {
+		@media (hover: hover) {
+			cursor: pointer;
+			color: var(--base-color-hover);
+		}
+	}
+
 	@media (max-width: $sm - 1) {
 		font-size: 10px;
 	}

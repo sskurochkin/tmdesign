@@ -971,7 +971,9 @@ window.addEventListener('load', function () {
 			const settingsBtn = this.container.querySelector(
 				'.cookie-notification__control--settings'
 			)
-			apptoveBtn.forEach(x=>x.addEventListener('click', () => this.accept()))
+			apptoveBtn.forEach(x=>x.addEventListener('click', () => {
+				this.accept(x.classList.contains('base'))
+			}))
 			cancelBtn.addEventListener('click', () => this.decline())
 			settingsBtn.addEventListener('click', () => this.showSettings())
 			this.container.querySelectorAll("input:not([disabled])").forEach((x) => {
