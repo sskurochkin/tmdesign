@@ -1,8 +1,4 @@
 /node_modules/
-html/*
-!html/payment.php
-!html/send.php
-!html/*.php
-!html/phpmailer
+html/assets/images
 /.idea/
 /.vscode/
