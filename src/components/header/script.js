@@ -20,7 +20,7 @@ window.addEventListener('load', function () {
 	})();
 
 	const arrow = document.querySelector('.hero-arrow')
-	arrow.addEventListener('click', ()=>{
+	arrow?.addEventListener('click', ()=>{
 		document.querySelector('.why').scrollIntoView()
 	})
 
@@ -67,7 +67,7 @@ window.addEventListener('load', function () {
 		}, config)
 	})
 
-	reviews.forEach(el=>{
+	reviews?.forEach(el=>{
 
 		sliderObserver.observe(el)
 	})
