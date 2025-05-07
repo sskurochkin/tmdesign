@@ -7,7 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $CHAT_ID = '623958700';
 //    $CHAT_ID = '529572469';
 
-    $transactionID   = (int) str_replace('.', '',number_format(microtime(true), 4, '.', ''));
+    $transaction   = (int) str_replace('.', '',number_format(microtime(true), 4, '.', ''));
+    $transactionID   = $transaction % 1000000;
 
 //
     $name = isset($_POST['name']) ? $_POST['name'] : '';
