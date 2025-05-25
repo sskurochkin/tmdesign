@@ -2,7 +2,7 @@
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $url = 'https://abby.rbsuat.com/payment/rest/register.do';
+    $url = 'https://ecom.alfabank.by/payment/rest/register.do';
     $BOT_TOKEN = '7659117318:AAEK07veMrkuY4o7ne920gWbQavb3K0DmWE';
     $CHAT_ID = '623958700';
 //    $CHAT_ID = '529572469';
@@ -29,8 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $postData = [
         'amount' => $amount,
         'currency' => 933,
-        'userName' => 'tmdesign.by_TW6LUTCUXSOFFSAGSNTK-api',
-        'password' => ')XW7n6oq',
+        'userName' => 'TMDESIGN-api',
+        'password' => '!Tmdesign_api2025',
         'returnUrl' => 'https://tmdesign.by/send.php?userMail='. $email . '&stage=' . $section . '&orderNumber=' . $transactionID,
 //    'description' => 'my_first_order',
         'language' => 'ru',

@@ -1,6 +1,6 @@
 <?php
 
-$url = 'https://abby.rbsuat.com/payment/rest/getOrderStatusExtended.do';
+$url = 'https://ecom.alfabank.by/payment/rest/getOrderStatusExtended.do';
 $userMail = htmlspecialchars($_GET['userMail'] ?? '');
 $stage = htmlspecialchars($_GET['stage'] ?? '');
 $orderID = htmlspecialchars($_GET['orderId'] ?? '');
@@ -18,8 +18,8 @@ if ($stage == '2' || $stage == '3') {
 
 
 $postData = [
-    'userName' => 'tmdesign.by_TW6LUTCUXSOFFSAGSNTK-api',
-    'password' => ')XW7n6oq',
+    'userName' => 'TMDESIGN-api',
+    'password' => '!Tmdesign_api2025',
     'orderNumber' => $orderNumber
 ];
 $ch = curl_init();
